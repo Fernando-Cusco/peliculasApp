@@ -1,11 +1,38 @@
 <ion-content>
-  <ion-slides mode="ios" scrollbar="ios" [options]="slideOpc">
 
-    <ion-slide *ngFor="let pelicula of peliculasRecientes">
-      <ion-card>
-        <img [src]="pelicula.backdrop_path | imagen">
-      </ion-card>
-    </ion-slide>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Peliculas</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  </ion-slides>
+  <app-slideshow-backdrop [peliculasRecientes]="peliculasRecientes">
+  </app-slideshow-backdrop>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Cartelera</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-slideshow-backdrop [peliculasRecientes]="peliculasRecientes">
+
+  </app-slideshow-backdrop>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Populares</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-slideshow-backdrop [peliculasRecientes]="peliculasPopulares">
+
+  </app-slideshow-backdrop>
+
 </ion-content>

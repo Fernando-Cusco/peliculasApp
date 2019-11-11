@@ -1,0 +1,9 @@
+<ion-slides mode="ios" scrollbar="ios" [options]="slideOpc">
+
+  <ion-slide *ngFor="let pelicula of peliculasRecientes">
+    <ion-card>
+      <ion-img class="posters" [src]="pelicula.poster_path | imagen"></ion-img>
+    </ion-card>
+  </ion-slide>
+
+</ion-slides>
