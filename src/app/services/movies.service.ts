@@ -10,7 +10,7 @@ const apiKey = environment.apiKey;
   providedIn: 'root'
 })
 export class MoviesService {
-
+  private popularesPage = 0;
   constructor(private http: HttpClient) { }
 
   private ejecutarQuery<T>(query: string) {
@@ -21,7 +21,8 @@ export class MoviesService {
 
 
   getPopulars() {
-    const query = '/discover/movie?sort_by=popularity.desc';
+    this.popularesPage ++;
+    const query = `/discover/movie?sort_by=popularity.desc&page=${this.popularesPage}`;
     return this.ejecutarQuery<MovieDB>(query);
   }
 
@@ -39,7 +40,6 @@ export class MoviesService {
     const inicio = `${ hoy.getFullYear()}-${mesString}-01`;
     const fin = `${ hoy.getFullYear()}-${mesString}-${ultimoDia}`;
 
-    // tslint:disable-next-line: max-line-length
     return this.ejecutarQuery<MovieDB>(`/discover/movie?primary_release_date.gte=${ inicio }&primary_release_date.lte=${ fin }`);
 
   }
