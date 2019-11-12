@@ -1,9 +1,9 @@
 <ion-slides mode="ios" scrollbar="ios" [options]="slideOpc">
   <ion-slide *ngFor="let pares of peliculas | pares">
     <ion-row>
-      <ion-col size="12" *ngFor="let pelicula of pares">
-        <ion-card>
-            <img class="posters" [src]="pelicula.poster_path | imagen">
+      <ion-col size="8" *ngFor="let pelicula of pares">
+        <ion-card (click)="verDetalle(pelicula.id)">
+            <ion-img class="posters" [src]="pelicula.poster_path | imagen"></ion-img>
         </ion-card>
       </ion-col>
     </ion-row>

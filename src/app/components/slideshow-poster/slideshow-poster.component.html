@@ -1,7 +1,7 @@
 <ion-slides mode="ios" scrollbar="ios" [options]="slideOpc">
 
   <ion-slide *ngFor="let pelicula of peliculasRecientes">
-    <ion-card>
+    <ion-card (click)="verDetalle(pelicula.id)">
       <ion-img class="posters" [src]="pelicula.poster_path | imagen"></ion-img>
     </ion-card>
   </ion-slide>
