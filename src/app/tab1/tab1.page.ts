@@ -28,8 +28,8 @@ export class Tab1Page implements OnInit {
 
     this.movieService.getPopulars()
         .subscribe( response => {
-          console.log(response);
           this.peliculasPopulares = response.results;
+          console.log('POPULARES', response);
     });
   }
 }
