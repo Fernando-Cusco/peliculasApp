@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MoviesService } from '../../services/movies.service';
 
 @Component({
   selector: 'app-detalle',
@@ -6,12 +7,21 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./detalle.component.scss'],
 })
 export class DetalleComponent implements OnInit {
+  //recibimos un parametro desde el padre
   @Input() id;
-  constructor() { }
+  constructor(private service: MoviesService) { }
 
   ngOnInit() {
-    console.log(this.id);
-    
+    this.service.getPeliculaDetalle(this.id).subscribe( response => {
+      console.log(response);
+    });
+
+    this.service.getActoresPelicula(this.id).subscribe( response => {
+      console.log(response);
+      
+    });
+
+
   }
 
 }
