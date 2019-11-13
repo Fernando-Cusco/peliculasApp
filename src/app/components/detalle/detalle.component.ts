@@ -40,7 +40,9 @@ export class DetalleComponent implements OnInit {
   }
 
   regresar() {
+    //regresamos a la pagina anterior
     this.modalCtrl.dismiss();
+    
   }
 
   favorito() {
