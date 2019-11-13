@@ -54,6 +54,6 @@ export class MoviesService {
   }
 
   getBuscarPelicula(pelicula: string) {
-    return this.ejecutarQuery(`/search/movie?query=${pelicula}?a=1`);
+    return this.ejecutarQuery(`/search/movie?query=${pelicula}`);
   }
 }
