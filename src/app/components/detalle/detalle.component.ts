@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { DetallePelicula, ActoresPelicula, Cast } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
+import { DatalocalService } from '../../services/datalocal.service';
 
 @Component({
   selector: 'app-detalle',
@@ -24,7 +25,9 @@ export class DetalleComponent implements OnInit {
 
   //ocultar o mostrar el texto
   oculto = 100;
-  constructor(private service: MoviesService, private modalCtrl: ModalController) { }
+  constructor(private service: MoviesService,
+              private modalCtrl: ModalController,
+              private serviceStorage: DatalocalService) { }
 
   ngOnInit() {
     this.service.getPeliculaDetalle(this.id).subscribe( response => {
@@ -46,7 +49,7 @@ export class DetalleComponent implements OnInit {
   }
 
   favorito() {
-
+    this.serviceStorage.guardarPelicula(this.pelicula);
   }
 
 }
