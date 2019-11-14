@@ -10,7 +10,9 @@ export class DatalocalService {
 
   peliculas: DetallePelicula[] = [];
 
-  constructor(private storage: Storage, private toast: ToastController) { }
+  constructor(private storage: Storage, private toast: ToastController) {
+    this.cargarFavoritos();
+   }
 
   guardarPelicula(pelicula: DetallePelicula) {
     let movieExist = false;
@@ -30,6 +32,7 @@ export class DatalocalService {
     }
     this.presentToast(mensaje);
     this.storage.set('peliculas', this.peliculas);
+    return !movieExist;
   }
 
   async presentToast(msj: string) {
@@ -38,5 +41,18 @@ export class DatalocalService {
       duration: 1000
     });
     toast.present();
+  }
+
+  async cargarFavoritos() {
+    const pelis =  await this.storage.get('peliculas');
+    this.peliculas = pelis || [];
+    return this.peliculas;
+  }
+
+  async existePelicula( id ) {
+    id = Number(id);
+    await this.cargarFavoritos();
+    const existe = this.peliculas.find( peli => peli.id === id);
+    return (existe) ? true : false;
   }
 }

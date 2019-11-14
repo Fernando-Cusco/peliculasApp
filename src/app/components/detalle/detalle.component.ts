@@ -15,6 +15,8 @@ export class DetalleComponent implements OnInit {
 
   pelicula: DetallePelicula = {};
   actores: Cast[] = [];
+  
+  star: string = 'star-outline';
 
   slideposter = {
     slidesPerView: 3.3,
@@ -30,6 +32,11 @@ export class DetalleComponent implements OnInit {
               private serviceStorage: DatalocalService) { }
 
   ngOnInit() {
+    const existe = this.serviceStorage.existePelicula(this.id).then(existe => {
+      this.star = (existe) ? 'star' : 'star-outline';
+    });
+    
+    
     this.service.getPeliculaDetalle(this.id).subscribe( response => {
       this.pelicula = response;
       console.log(response);
@@ -49,7 +56,9 @@ export class DetalleComponent implements OnInit {
   }
 
   favorito() {
-    this.serviceStorage.guardarPelicula(this.pelicula);
+    const exi = this.serviceStorage.guardarPelicula(this.pelicula);
+    this.star = (exi) ? 'star' : 'star-outline';
+
   }
 
 }
